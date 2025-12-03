@@ -1,2 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="service.day" parent="Widget.MaterialComponents.CardView" >
+        <item name="cardBackgroundColor">@color/white_alt</item>
+    </style>
+    <style name="service.night" parent="Widget.MaterialComponents.CardView" >
+        <item name="cardBackgroundColor">@color/grey_200</item>
+    </style>
+    <style name="service.day.MaterialLineDivider" parent="Widget.MaterialComponents.CardView" >
+        <item name="cardBackgroundColor">@color/grey_500</item>
+    </style>
+
+    <style name="Title20SBold_White">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="Title25SBold_White">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="Title20SBold_NoColor">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="Title20Medium_NoColor">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="TitleNoFont_G2LG">
+        <item name="android:textColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Title20SBold_G2LG">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="Title30SBold_NoColor">
+        <item name="android:textSize">30sp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TitleSBold_G2LG">
+        <item name="android:textColor">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TitleSBold_G2W">
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TitleRegular_White">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+</resources>

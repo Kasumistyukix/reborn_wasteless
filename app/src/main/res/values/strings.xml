@@ -20,15 +20,24 @@
 
     Rename/refactor using Shift+F6 if named wrongly
     -->
-    <string name="app_name">Wasteless</string>
+    <string name="app_name">WasteLess</string>
+    <string name="app_catchphrase">Waste less. Care more.</string>
     <string name="fragment_title">Fragment Title</string>
+    <!-- Fragment Titles -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_diary">Diary</string>
+    <string name="title_account">Account</string>
+    <string name="title_tamagotchi">Tamagotchi</string>
+    <string name="title_logging">Logging</string>
+    <string name="title_sign_in_selection">Sign In Selection</string>
+    <string name="title_login">Log In</string>
+    <string name="title_sign_up">Sign Up</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_leaderboard">Leaderboard</string>
 
     <!-- RecyclerView Content -->
     <string name="img_food_waste">Food waste</string>
-    <string name="item_diary_waste_type_1">Food related</string>
+    <string name="item_diary_waste_type_1">Unavoidable</string>
     <string name="item_diary_date_1">recorded on 11/09/2025</string>
     <string name="item_diary_title_1">Rice Leftovers</string>
     <string name="item_diary_weight_1">350g</string>
@@ -36,12 +45,14 @@
     <!-- 🛑 Login/Sign-up Fragment -->
     <string name="edt_email">Email</string>
     <string name="edt_password">Password</string>
+    <string name="edt_username">Username</string>
+    <string name="edt_confirm_password">Confirm Password</string>
+    <string name="get_started">Get started!</string>
+    <string name="i_already_have_an_account">I already have an account</string>
     <!-- buttons -->
-    <string name="btn_login">Login</string>
-    <string name="btn_sign_up">Sign Up</string>
-    <string name="btn_login_here">Have an account? Login here</string>
-    <string name="btn_sign_up_here">Sign up for an account!</string>
-    <string name="btn_forgot_password">Forgot password</string>
+    <string name="btn_login">LOG IN</string>
+    <string name="btn_sign_up">SIGN UP</string>
+    <string name="btn_forgot_password">Forgot password?</string>
     <!-- Login/Sign-up: test credentials-->
     <string name="test_email">testuser@uni.edu</string>
     <string name="test_password">123456</string>
@@ -85,6 +96,9 @@
 
     <!-- 👤 Account Fragment -->
     <string name="btn_log_out">Log out</string>
+    <string name="hello_user">Hello, user!</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <!-- New additions/not sorted yet -->
 </resources>

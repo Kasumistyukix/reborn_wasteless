@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "115049290428",
+    "project_id": "wasteless-reborn",
+    "storage_bucket": "wasteless-reborn.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115049290428:android:7596801b68d575f8a30eb9",
+        "android_client_info": {
+          "package_name": "com.reborn.wasteless"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkn3LgJZkR47Lh4Cfv_i6CGHUXUEg5ODk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

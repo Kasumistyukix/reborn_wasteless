@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- When the user is currently pressing on it -->
     <item android:color="@color/yellow" android:state_pressed="true"/>
 
-    <item android:color="@color/green_200" android:state_checked="true"/>
+    <!-- When the user is currently on that page -->
+    <item android:color="@color/green_500" android:state_checked="true"/>
 
-    <item android:color="@color/light_grey" android:state_checked="false"/>
+    <!-- Default state -->
+    <item android:color="?attr/colorOnSecondary" android:state_checked="false"/>
 </selector>

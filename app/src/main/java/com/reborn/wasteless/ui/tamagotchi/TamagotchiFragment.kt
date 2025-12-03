@@ -1,4 +1,4 @@
-package com.reborn.wasteless.ui.notifications
+package com.reborn.wasteless.ui.tamagotchi
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.reborn.wasteless.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class TamagotchiFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
@@ -22,14 +22,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val tamagotchiViewModel =
+            ViewModelProvider(this).get(TamagotchiViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        tamagotchiViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

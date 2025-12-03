@@ -3,10 +3,10 @@
 
     <item android:color="@color/yellow" android:state_pressed="true"/>
 
-    <item android:color="@color/green_200" android:state_checked="true"/>
+    <item android:color="?attr/colorPrimaryVariant" android:state_checked="true"/>
 
     <item android:color="@color/white_green" android:state_focused="true"/>
 
-    <item android:color="@color/dark_grey"/>
+    <item android:color="?attr/colorOnSecondary"/>
 
 </selector>

@@ -1,13 +1,13 @@
-package com.reborn.wasteless.ui.dashboard
+package com.reborn.wasteless.ui.tamagotchi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class TamagotchiViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is Tamagotchi Fragment"
     }
     val text: LiveData<String> = _text
 }

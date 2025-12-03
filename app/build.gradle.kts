@@ -43,6 +43,8 @@ android {
 dependencies {
     //glide dependencies (img loading & cache)
     implementation(libs.glide)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx)
     annotationProcessor(libs.compiler)
 
     //noinspection UseTomlInstead

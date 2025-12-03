@@ -14,12 +14,16 @@
     -->
 
     <!-- Main theme colors -->
-    <color name="green_200">#34882E</color>
-    <color name="dark_grey">#383838</color>
-    <color name="light_grey">#6E6E6E</color>
+    <color name="green_200">#5BBF53</color>
+    <color name="green_500">#34882E</color>
+    <color name="green_700">#2C7027</color>
+    <color name="grey_200">#6E6E6E</color>
+    <color name="grey_500">#383838</color>
+    <color name="grey_700">#1F1F1F</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white_alt">#FAFAFA</color>
+    <color name="white_alt">#F8F8F8</color>
     <color name="black">#FF000000</color>
+    <color name="test">#FFC107</color>
 
     <!-- Background theme colors -->
     <color name="light_green">#8EDB94</color>

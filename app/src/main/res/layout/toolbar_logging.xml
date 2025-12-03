@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_toolbar_logging"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/logging_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:titleTextColor="?attr/colorOnPrimary">
+
+        <!-- Left button -->
+        <ImageButton
+            android:id="@+id/toolbar_logging_no"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_close_24px"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_cancel"
+            android:layout_gravity="start"
+            app:tint="?attr/colorOnPrimary"
+        />
+
+        <!-- Right button -->
+        <ImageButton
+            android:id="@+id/toolbar_logging_yes"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_check_24px"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_confirm"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            app:tint="?attr/colorOnPrimary"
+        />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

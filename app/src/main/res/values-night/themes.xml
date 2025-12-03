@@ -1,16 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Wasteless" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Wasteless" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Default font family -->
+        <item name="fontFamily">@font/poppins_regular</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/green_700</item>
+        <item name="colorPrimaryVariant">@color/green_200</item>
+        <item name="colorOnPrimary">@color/white_alt</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/green_200</item>
+        <item name="colorSecondaryVariant">@color/white_alt</item>
+        <item name="colorOnSecondary">@color/white_alt</item>
+        <!-- Tertiary brand color. for button reactions -->
+        <item name="colorTertiary">@null</item>
+        <item name="colorOnTertiary">@null</item>
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/grey_700</item>
+        <item name="colorSurfaceVariant">@color/grey_500</item>
+        <item name="colorOnSurface">@color/white</item>
+        <!-- Background color -->
+        <item name="android:colorBackground">@color/grey_700</item>
+        <item name="colorOnBackground">@color/white</item>
         <!-- Customize your theme here. -->
+
     </style>
 </resources>

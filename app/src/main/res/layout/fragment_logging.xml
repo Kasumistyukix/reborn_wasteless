@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_logging"
+    android:background="?attr/colorSurface"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.logging.LoggingFragment">
+
+    <!-- toolbar for logging screen -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/logging_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:titleTextColor="?attr/colorOnPrimary">
+
+        <!-- Left button -->
+        <ImageButton
+            android:id="@+id/toolbar_logging_no"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_close_24px"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_cancel"
+            android:layout_gravity="start"
+            app:tint="?attr/colorOnPrimary"
+            />
+
+        <!-- Right button -->
+        <ImageButton
+            android:id="@+id/toolbar_logging_yes"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_check_24px"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_confirm"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            app:tint="?attr/colorOnPrimary"
+            />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- photo capture -->
+    <ImageView
+        android:id="@+id/photoCaptureView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/btn_take_photo"
+        android:src="@drawable/placeholder_image"
+        android:scaleType="centerCrop"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/logging_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <!-- Date & Time -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_input_1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:elevation="8dp"
+        app:layout_constraintTop_toBottomOf="@id/photoCaptureView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/dateImg"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_calendar_clock_24px"
+            app:tint="@color/green_200"
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_date"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/dateTimeInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/btn_select_date"
+            android:textSize="15sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="40dp"
+            android:gravity="center_vertical"
+            style="@style/Title20Medium_NoColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dateImg"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Title -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_input_2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/logging_input_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/titleImg"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_title_24px"
+            app:tint="@color/green_200"
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_title"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/titleImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxStrokeWidth="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/btn_enter_here"
+                android:textColorHint="?attr/colorOnSurface"
+                android:inputType="text"
+                android:textSize="15sp"
+                style="@style/Title20Medium_NoColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Waste Type -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_input_3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/logging_input_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioGroup
+            android:id="@+id/wasteTypeRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <RadioButton
+                android:id="@+id/button_unavoidable"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:button="@null"
+                android:contentDescription="@string/btn_unavoidable"
+                android:background="@drawable/ic_unavoidable_24px"
+                android:backgroundTint="@drawable/selector_radio_button"/>
+
+            <RadioButton
+                android:id="@+id/button_avoidable"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:button="@null"
+                android:contentDescription="@string/btn_avoidable"
+                android:background="@drawable/ic_avoidable_24px"
+                android:backgroundTint="@drawable/selector_radio_button"/>
+
+            <RadioButton
+                android:id="@+id/button_food_related"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:button="@null"
+                android:contentDescription="@string/btn_food_related"
+                android:background="@drawable/ic_food_related_24px"
+                android:backgroundTint="@drawable/selector_radio_button"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_waste_type"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Calculation Type -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_input_4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/logging_input_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_calculation"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <RadioGroup
+            android:id="@+id/calculationTypeRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <RadioButton
+                android:id="@+id/button_grams"
+                android:layout_width="44dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:button="@null"
+                android:contentDescription="@string/btn_grams"
+                android:background="@drawable/ic_weight_24px"
+                android:backgroundTint="@drawable/selector_radio_button"/>
+
+            <RadioButton
+                android:id="@+id/button_portions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:button="@null"
+                android:contentDescription="@string/btn_portions"
+                android:background="@drawable/ic_portion_24px"
+                android:backgroundTint="@drawable/selector_radio_button"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvComputedWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight: 0.00g"
+            app:layout_constraintStart_toEndOf="@id/calculationTypeRadio"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Remarks -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_input_5"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/logging_input_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/remarkImg"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_remarks_24px"
+            app:tint="@color/green_200"
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_remarks"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/remarkLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/remarkImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:boxStrokeWidth="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/remarkInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/btn_enter_here"
+                android:inputType="text"
+                android:textSize="15sp"
+                style="@style/Title20Medium_NoColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- save button -->
+    <Button
+        android:id="@+id/button_save_log"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        style="@style/Title25SBold_White"
+        android:textAllCaps="false"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/logging_input_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Overlay panel -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logging_overlayPanel"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        android:background="?attr/colorSurfaceVariant"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Overlay container -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/overlay_header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/colorPrimary"
+            android:elevation="9dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/wasteType_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_overlay_title"
+                style="@style/Title20SBold_White"
+                android:layout_marginStart="8dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/overlay_Done"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/btn_done"
+                style="@style/Title20SBold_White"
+                android:focusable="true"
+                android:clickable="true"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_item_waste"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintTop_toBottomOf="@id/overlay_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_waste"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sign_in_selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.login.SignInSelectionFragment">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/icon_logo_only"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"
+        app:layout_constraintHeight_percent="0.40"
+        app:layout_constraintWidth_percent="0.80"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:includeFontPadding="false"
+        style="@style/TitleSBold_G2LG"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/logo_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/app_catchphrase"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:includeFontPadding="false"
+        style="@style/Title20Medium_NoColor"
+        app:layout_constraintTop_toBottomOf="@id/logo_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Signup Button -->
+    <Button
+        android:id="@+id/buttonSignup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/shape_rounded_rectangle"
+        app:backgroundTint="?attr/colorPrimaryVariant"
+        android:text="@string/get_started"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        style="@style/Title20SBold_White"
+        app:layout_constraintBottom_toTopOf="@id/buttonLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/shape_rounded_rectangle"
+        app:backgroundTint="?attr/colorSurfaceVariant"
+        android:text="@string/i_already_have_an_account"
+        android:textAllCaps="false"
+        style="@style/Title20SBold_G2LG"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.9"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

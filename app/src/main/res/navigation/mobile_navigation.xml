@@ -6,20 +6,51 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_sign_in_selection"
+        android:name="com.reborn.wasteless.ui.login.SignInSelectionFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_sign_in_selection" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.reborn.wasteless.ui.login.LoginFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_sign_up"
+        android:name="com.reborn.wasteless.ui.signup.SignUpFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_sign_up" />
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.reborn.wasteless.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.reborn.wasteless.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_diary"
+        android:name="com.reborn.wasteless.ui.diary.DiaryFragment"
+        android:label="@string/title_diary"
+        tools:layout="@layout/fragment_diary" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.reborn.wasteless.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_tamagotchi"
+        android:name="com.reborn.wasteless.ui.tamagotchi.TamagotchiFragment"
+        android:label="@string/title_tamagotchi"
+        tools:layout="@layout/fragment_tamagotchi" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.reborn.wasteless.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_logging"
+        android:name="com.reborn.wasteless.ui.logging.LoggingFragment"
+        android:label="@string/title_logging"
+        tools:layout="@layout/fragment_logging" />
+
 </navigation>
