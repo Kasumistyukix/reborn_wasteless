@@ -19,7 +19,7 @@
         <item name="colorSurfaceVariant">@color/white</item> <!-- white to grey500-->
         <item name="colorOnSurface">@color/grey_500</item>
         <!-- Background color -->
-        <item name="android:colorBackground">@drawable/background_app_alt</item>
+        <item name="android:colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/white</item>
         <!-- Customize your theme here. -->
     </style>

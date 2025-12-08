@@ -1,26 +1,65 @@
 {
   "project_info": {
-    "project_number": "115049290428",
-    "project_id": "wasteless-reborn",
-    "storage_bucket": "wasteless-reborn.firebasestorage.app"
+    "project_number": "340279615291",
+    "project_id": "wasteless-c5145",
+    "storage_bucket": "wasteless-c5145.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:115049290428:android:7596801b68d575f8a30eb9",
+        "mobilesdk_app_id": "1:340279615291:android:906d53762949cd0718611e",
         "android_client_info": {
-          "package_name": "com.reborn.wasteless"
+          "package_name": "com.example.wasteless"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "340279615291-3upgbi24lv7iqshm8q1g6cj3n5k9elng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAkn3LgJZkR47Lh4Cfv_i6CGHUXUEg5ODk"
+          "current_key": "AIzaSyBmvGJ7lw4h8Y6OLKnH9KZ8s4Zxe-TDR_8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340279615291-3upgbi24lv7iqshm8q1g6cj3n5k9elng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340279615291:android:860bcb1c7fde6eca18611e",
+        "android_client_info": {
+          "package_name": "com.reborn.wasteless"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340279615291-3upgbi24lv7iqshm8q1g6cj3n5k9elng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmvGJ7lw4h8Y6OLKnH9KZ8s4Zxe-TDR_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340279615291-3upgbi24lv7iqshm8q1g6cj3n5k9elng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

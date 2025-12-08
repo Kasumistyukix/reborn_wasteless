@@ -39,15 +39,14 @@
             android:id="@+id/text_username_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:hint="@string/edt_username"
             style="@style/TitleRegular_White"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- email -->
+    <!-- display name -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_layout_email_signup"
+        android:id="@+id/text_layout_display_name_signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -60,6 +59,29 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_display_name_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/display_name"
+            style="@style/TitleRegular_White"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- email -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_email_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:boxBackgroundMode="filled"
+        app:boxBackgroundColor="?attr/colorSurfaceVariant"
+        app:layout_constraintTop_toBottomOf="@id/text_layout_display_name_signup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_email_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edt_email"

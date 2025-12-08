@@ -1,7 +1,10 @@
 package com.reborn.wasteless.ui.logging
 
 import androidx.lifecycle.ViewModel
+import com.reborn.wasteless.repo.LogRepository
 
-class LoggingViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class LoggingViewModel(
+    private val logRepository: LogRepository = LogRepository()
+) : ViewModel() {
+
 }

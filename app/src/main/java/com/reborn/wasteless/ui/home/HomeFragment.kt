@@ -8,31 +8,39 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.reborn.wasteless.databinding.FragmentHomeBinding
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val vm: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        //Local variable root that points to binding.root
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Observe greeting from ViewModel - using viewLifecycleOwner prevents memory leaks
+        // This automatically unsubscribes when the view is destroyed
+        vm.greeting.observe(viewLifecycleOwner) { greetingText ->
+            binding.textGreeting.text = greetingText
+        }
+
+        binding.buttonLogWaste.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeToLogging())
+        }
     }
 
     override fun onDestroyView() {

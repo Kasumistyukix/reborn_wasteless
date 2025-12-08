@@ -6,31 +6,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.reborn.wasteless.R
+import androidx.navigation.fragment.findNavController
 import com.reborn.wasteless.databinding.FragmentSignInSelectionBinding
 
 class SignInSelectionFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SignInSelectionFragment()
-    }
-
     private var _binding: FragmentSignInSelectionBinding? = null
-
     private val binding get() = _binding!!
-
-    private val viewModel: SignInSelectionViewModel by viewModels()
+    private val vm: SignInSelectionViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_sign_in_selection, container, false)
+        _binding = FragmentSignInSelectionBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Navigate to login screen
+        binding.buttonLogin.setOnClickListener {
+            findNavController().navigate(SignInSelectionFragmentDirections.actionSelectionToLogin())
+        }
+
+        // Navigate to signup screen
+        binding.buttonSignup.setOnClickListener {
+            findNavController().navigate(SignInSelectionFragmentDirections.actionSelectionToSignUp())
+        }
     }
 }

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="service.day" parent="Widget.MaterialComponents.CardView" >
-        <item name="cardBackgroundColor">@color/white_alt</item>
-    </style>
-    <style name="service.night" parent="Widget.MaterialComponents.CardView" >
-        <item name="cardBackgroundColor">@color/grey_200</item>
-    </style>
     <style name="service.day.MaterialLineDivider" parent="Widget.MaterialComponents.CardView" >
+        <item name="cardBackgroundColor">@color/grey_500</item>
+    </style>
+    <style name="service.night.MaterialLineDivider" parent="Widget.MaterialComponents.CardView" >
         <item name="cardBackgroundColor">@color/grey_500</item>
     </style>
 
@@ -60,7 +57,7 @@
     </style>
 
     <style name="TitleRegular_White">
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
         <item name="fontFamily">@font/poppins_regular</item>
     </style>
 </resources>

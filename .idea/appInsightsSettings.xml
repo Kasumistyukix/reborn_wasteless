@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.reborn.wasteless" />
-                  <option name="mobileSdkAppId" value="1:115049290428:android:7596801b68d575f8a30eb9" />
-                  <option name="projectId" value="wasteless-reborn" />
-                  <option name="projectNumber" value="115049290428" />
+                  <option name="mobileSdkAppId" value="1:340279615291:android:860bcb1c7fde6eca18611e" />
+                  <option name="projectId" value="wasteless-c5145" />
+                  <option name="projectNumber" value="340279615291" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

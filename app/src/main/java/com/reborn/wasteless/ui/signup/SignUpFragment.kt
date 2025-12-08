@@ -8,27 +8,79 @@ import android.view.View
 import android.view.ViewGroup
 import com.reborn.wasteless.R
 import com.reborn.wasteless.databinding.FragmentSignUpBinding
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.reborn.wasteless.data.model.AuthState
 
 class SignUpFragment : Fragment() {
 
     private var _binding: FragmentSignUpBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
-    private val viewModel: SignUpViewModel by viewModels()
+    private val vm: SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Sign up button click handler
+        binding.buttonSignup.setOnClickListener {
+            val username = binding.textUsernameSignup.text.toString()
+            val email = binding.textEmailSignup.text.toString()
+            val password = binding.textPasswordSignup.text.toString()
+
+            // Call ViewModel to handle registration logic
+            // ViewModel will validate and create account with username
+            vm.register(username, email, password)
+        }
+
+        //Just a pop back to SignInSelectionFragment
+        binding.toolbarNo.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // Observe registration state and react accordingly
+        // Using viewLifecycleOwner prevents memory leaks
+        vm.registerState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is AuthState.Loading -> {
+                    // Show loading indicator (optional)
+                    // You can disable button or show progress bar here
+                }
+                is AuthState.Success -> {
+                    // Registration success, so we juts move them to login page (am lazy to make sessions for automatic login)
+                    Toast.makeText(requireContext(), "Account created!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(SignUpFragmentDirections.actionSignUpToLogin())
+                    // Reset state after navigation
+                    vm.resetState()
+                }
+                is AuthState.Error -> {
+                    // Registration failed, so we just show a error msg based on AuthState(errormessage) where
+                    // errormessage was passed on from the SignUpVM
+                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                }
+                AuthState.Idle -> {
+                    // Initial idle state, so do nothing
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

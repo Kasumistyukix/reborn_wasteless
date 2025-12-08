@@ -3,50 +3,132 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_sign_in_selection">
 
+    <!-- Sign In Selection -->
     <fragment
         android:id="@+id/navigation_sign_in_selection"
         android:name="com.reborn.wasteless.ui.login.SignInSelectionFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_sign_in_selection" />
+        android:label="@string/title_sign_in_selection"
+        tools:layout="@layout/fragment_sign_in_selection">
+        <action
+            android:id="@+id/action_selection_to_sign_up"
+            app:destination="@id/navigation_sign_up"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_selection_to_login"
+            app:destination="@id/navigation_login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
+    <!-- Login -->
     <fragment
         android:id="@+id/navigation_login"
         android:name="com.reborn.wasteless.ui.login.LoginFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_login" />
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_login_to_forgot_password"
+            app:destination="@id/navigation_forgot_password"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
+    <!-- Sign Up -->
     <fragment
         android:id="@+id/navigation_sign_up"
         android:name="com.reborn.wasteless.ui.signup.SignUpFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_sign_up" />
+        android:label="@string/title_sign_up"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_sign_up_to_login"
+            app:destination="@id/navigation_login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
 
+    <!-- Forgot Password -->
+    <fragment
+        android:id="@+id/navigation_forgot_password"
+        android:name="com.reborn.wasteless.ui.login.ForgotPasswordFragment"
+        android:label="@string/title_forgot_password"
+        tools:layout="@layout/fragment_forgot_password"/>
+
+    <!-- Home -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.reborn.wasteless.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_diary"
+            app:destination="@id/navigation_diary"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_home_to_tamagotchi"
+            app:destination="@id/navigation_tamagotchi"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_home_to_account"
+            app:destination="@id/navigation_account"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_home_to_logging"
+            app:destination="@id/navigation_logging"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
 
+    <!-- Diary -->
     <fragment
         android:id="@+id/navigation_diary"
         android:name="com.reborn.wasteless.ui.diary.DiaryFragment"
         android:label="@string/title_diary"
-        tools:layout="@layout/fragment_diary" />
+        tools:layout="@layout/fragment_diary">
+        <action
+            android:id="@+id/action_diary_to_logging"
+            app:destination="@id/navigation_logging"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
 
+    <!-- Tamagotchi -->
     <fragment
         android:id="@+id/navigation_tamagotchi"
         android:name="com.reborn.wasteless.ui.tamagotchi.TamagotchiFragment"
         android:label="@string/title_tamagotchi"
-        tools:layout="@layout/fragment_tamagotchi" />
+        tools:layout="@layout/fragment_tamagotchi"/>
 
+    <!-- Account -->
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.reborn.wasteless.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_account_to_sign_in_selection"
+            app:destination="@id/navigation_sign_in_selection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
 
+    <!-- Logging -->
     <fragment
         android:id="@+id/navigation_logging"
         android:name="com.reborn.wasteless.ui.logging.LoggingFragment"

@@ -16,13 +16,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.reborn.wasteless.databinding.ActivityMainBinding
 import com.reborn.wasteless.R
-import com.google.firebase.auth.FirebaseAuth
+import com.reborn.wasteless.repo.AuthRepository
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var navController: NavController
+    private val authRepository = AuthRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +35,41 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         navController = navHostFragment.navController
 
+        //Check if there's a current user logged in AFTER navController is loaded
+        binding.root.post {
+            val isSignedIn = authRepository.isUserSignedIn()
+            val destination = if (isSignedIn) R.id.navigation_home else R.id.navigation_sign_in_selection
+            navController.navigate(destination)
+            Log.d("Auth", "User signed in: $isSignedIn, navigating to: $destination")
+        }
+
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_diary, R.id.navigation_tamagotchi
-            )
-        )
         navView.setupWithNavController(navController)
+
+        //Listener for navigation bar
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id) {
+                R.id.navigation_home -> {
+                    showBottomNav()
+                }
+                R.id.navigation_diary -> {
+                    showBottomNav()
+                }
+                R.id.navigation_tamagotchi -> {
+                    hideBottomNav()
+                }
+                R.id.navigation_account -> {
+                    showBottomNav()
+                }
+                R.id.navigation_login,
+                R.id.navigation_sign_up,
+                R.id.navigation_sign_in_selection,
+                R.id.navigation_logging -> {
+                    hideBottomNav()
+                }
+            }
+        }
     }
 
     fun showBottomNav() {
