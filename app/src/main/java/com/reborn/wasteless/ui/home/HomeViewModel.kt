@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.reborn.wasteless.data.entity.UserEntity
 import com.reborn.wasteless.repo.UserRepository
 import androidx.lifecycle.map
+import com.reborn.wasteless.repo.LogRepository
 
 /**
  * ViewModel for HomeFragment.
@@ -16,8 +17,12 @@ import androidx.lifecycle.map
  * - No observeForever or direct coroutines without proper cancellation
  */
 class HomeViewModel(
-    private val userRepository: UserRepository = UserRepository()
+    private val userRepository: UserRepository = UserRepository(), //apparently, providing a repo makes it optional so the app wont throw NoSuchMethodException
+    private val logRepository: LogRepository = LogRepository()
 ) : ViewModel() {
+
+    //Get all summaries from logRepo
+    val summary = logRepository.getAllSummaries()
 
     /**
      * LiveData for current user's profile.

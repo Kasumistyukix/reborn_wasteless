@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.reborn.wasteless.databinding.FragmentHomeBinding
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.reborn.wasteless.ui.adapter.FoodLogAdapter
 
 class HomeFragment : Fragment() {
 
@@ -40,6 +43,17 @@ class HomeFragment : Fragment() {
 
         binding.buttonLogWaste.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeToLogging())
+        }
+
+        /**
+         * RecyclerView summary mapping
+         */
+        val recyclerDiary = binding.recyclerHomepageDiary
+        recyclerDiary.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        vm.summary.observe(viewLifecycleOwner) { summaries ->
+            val adapter = FoodLogAdapter(summaries, mode = "HOME")
+            recyclerDiary.adapter = adapter
         }
     }
 

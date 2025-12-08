@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.reborn.wasteless.databinding.FragmentDiaryBinding
+import com.reborn.wasteless.ui.adapter.FoodLogAdapter
 import kotlin.getValue
 import com.reborn.wasteless.utils.applyTopWindowInsets
-import com.reborn.wasteless.utils.applyBottomWindowInsets
+
 
 class DiaryFragment : Fragment() {
 
@@ -33,6 +34,17 @@ class DiaryFragment : Fragment() {
 
         //Apply padding to toolbar
         binding.diaryToolbar.applyTopWindowInsets()
+
+        /**
+         * RecyclerView summary mapping
+         */
+        val recyclerDiary = binding.recyclerDiary
+        recyclerDiary.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        vm.summary.observe(viewLifecycleOwner) { summaries ->
+            val adapter = FoodLogAdapter(summaries, mode = "DIARY")
+            recyclerDiary.adapter = adapter
+        }
     }
 
     override fun onDestroyView() {

@@ -12,18 +12,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
+import com.reborn.wasteless.data.model.FoodLogSummary
 import java.util.UUID
+import androidx.lifecycle.map
+import com.reborn.wasteless.data.mappers.toSummary
 
 class LogRepository {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = Firebase.firestore
+
     // Firebase Storage root reference
     private val storageRef = Firebase.storage.reference
 
 
     /**
-     * If Storage Bucket is used--
+     * Uses firebase's storage bucket to store images taken from imagepicker, which is stored as a jpg into uri
      * */
     fun uploadImage(uri: Uri): Task<String> {
         val uid = auth.currentUser?.uid
@@ -47,7 +51,7 @@ class LogRepository {
     }
 
     /**
-     * Saves a [com.example.wasteless.data.FoodLogEntity] to Firestore.
+     * Saves a [com.reborn.wasteless.data.entity.FoodLogEntity] to Firestore.
      * Returns Task<Void> when Firestore write completes.
      */
     fun saveLog(
@@ -112,5 +116,14 @@ class LogRepository {
                 live.postValue(sum)
             }
         return live
+    }
+
+    /**
+     * Fetch all food log data and map it into an entity w/ toSummary() based on FoodLogSummary
+     */
+    fun getAllSummaries(): LiveData<List<FoodLogSummary>> {
+        return getAllSession().map { entities ->
+            entities.map { it.toSummary() }
+        }
     }
 }
