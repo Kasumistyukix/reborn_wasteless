@@ -1,5 +1,7 @@
 package com.reborn.wasteless.ui.signup
 
+import android.util.Log
+import android.util.Log.e
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -98,7 +100,7 @@ class SignUpViewModel(
 
         if (!isValidPassword(trimmedPassword)) {
             _registerState.value =
-                AuthState.Error("Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 number")
+                AuthState.Error("Password must contain at least 1 uppercase, lowercase, special character & number")
         }
 
         // Set loading state
@@ -153,23 +155,8 @@ class SignUpViewModel(
      * @return true if valid password format, else return false
      */
     private fun isValidPassword(password: String): Boolean {
-        val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\\\S+\$).{8,}\$"
+        val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+$).{8,}$"
         return password.matches(passwordRegex.toRegex())
-    }
-
-    /**
-     * Extracts a username from email (part before @).
-     * Example: "john.doe@example.com" -> "john.doe"
-     *
-     * @param email Email address
-     * @return Username extracted from email
-     */
-    private fun extractUsernameFromEmail(email: String): String {
-        return if (email.isNotEmpty() && email.contains("@")) {
-            email.substringBefore("@")
-        } else {
-            "user"
-        }
     }
 
     /**

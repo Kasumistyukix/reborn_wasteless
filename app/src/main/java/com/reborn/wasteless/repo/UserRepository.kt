@@ -3,6 +3,7 @@ package com.reborn.wasteless.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.reborn.wasteless.data.entity.UserEntity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -70,10 +71,13 @@ class UserRepository {
     }
 
     /**
-     * Extracts a display name from email (part before @).
+     * Extracts a username from email (part before @).
      * Example: "john.doe@example.com" -> "john.doe"
+     *
+     * @param email Email address
+     * @return Username extracted from email
      */
-    private fun extractUsernameFromEmail(email: String): String {
+    fun extractUsernameFromEmail(email: String): String {
         return if (email.isNotEmpty() && email.contains("@")) {
             email.substringBefore("@")
         } else {
@@ -87,14 +91,32 @@ class UserRepository {
      */
     fun createOrUpdateUser(user: UserEntity): Task<Void> {
         val uid = auth.currentUser?.uid
-            ?: return com.google.android.gms.tasks.Tasks.forException(
+            ?: return Tasks.forException(
                 IllegalStateException("No signed-in user")
             )
 
-        return firestore
-            .collection("users")
-            .document(uid)
-            .set(user.copy(uid = uid))
+        // Create a WriteBatch, essentially how this works is
+        // the concept of Atomicity
+        // (where you bundle the two tasks together as one, so if one fails everything fails)
+        val batch = firestore.batch()
+
+        // Prepare the user profile (in 'users' collection)
+        val userRef = firestore.collection("users").document(uid)
+        // Ensure the entity has the correct UID
+        val finalUser = user.copy(uid = uid)
+        batch.set(userRef, finalUser)
+
+        // Username collection just to check for username availability (in 'usernames' collection)
+        // The document ID is the username itself
+        val usernameRef = firestore.collection("usernames").document(user.username)
+        //The purpose of adding uid into the content is to link the usernames back to the users document
+        val usernameData = hashMapOf(
+            "uid" to uid
+        )
+        batch.set(usernameRef, usernameData)
+
+        // 4. Commit both operations atomically
+        return batch.commit()
     }
 
     /**
@@ -102,12 +124,11 @@ class UserRepository {
      * @return true if username exist, else false
      */
     fun isUsernameTaken(username: String): Task<Boolean> {
-        return firestore.collection("users")
-            .whereEqualTo("username", username)
-            .limit(1) // prevent reading whole collection
+        return firestore.collection("usernames")
+            .document(username)
             .get()
             .continueWith { task ->
-                !task.result.isEmpty // true = username exists
+                task.result?.exists() == true // true = username exists
             }
     }
 }
