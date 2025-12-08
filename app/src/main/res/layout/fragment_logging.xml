@@ -400,7 +400,7 @@
     <!-- Overlay panel -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/logging_overlayPanel"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="410dp"
         android:background="?attr/colorSurfaceVariant"
