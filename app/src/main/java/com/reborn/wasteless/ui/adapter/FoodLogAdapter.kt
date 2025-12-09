@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.reborn.wasteless.R
 import com.reborn.wasteless.data.model.FoodLogSummary
 
@@ -32,6 +33,18 @@ class FoodLogAdapter(private val logs: List<FoodLogSummary>, private val mode: S
         holder.tvDate.text = log.date
         holder.tvWeight.text = log.totalWeight
         holder.tvWasteType.text = log.wasteType
+
+        // Load log image when available; otherwise leave default drawable
+        if (!log.imageUrl.isNullOrBlank()) {
+            Glide.with(holder.itemView)
+                .load(log.imageUrl)
+                .centerCrop()
+                .error(R.drawable.icon_sample_photo)
+                .placeholder(R.drawable.icon_sample_photo)
+                .into(holder.ivPhoto)
+        } else {
+            holder.ivPhoto.setImageResource(R.drawable.icon_sample_photo)
+        }
 
         //Converting size layout
         val layoutParams = holder.itemView.layoutParams
