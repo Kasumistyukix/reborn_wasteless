@@ -65,9 +65,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/navigation_sign_in_selection"
-            app:popUpToInclusive="false"/>
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <!-- Sign Up -->
@@ -155,7 +153,7 @@
             app:destination="@id/navigation_sign_in_selection"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/navigation_home"
+            app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true"/>
     </fragment>
 
