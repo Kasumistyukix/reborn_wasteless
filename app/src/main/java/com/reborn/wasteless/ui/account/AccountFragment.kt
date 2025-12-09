@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.reborn.wasteless.databinding.FragmentAccountBinding
+import com.reborn.wasteless.utils.applyTopWindowInsets
 
 class AccountFragment : Fragment() {
 
@@ -17,8 +18,6 @@ class AccountFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
@@ -31,6 +30,9 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Apply padding to toolbar
+        binding.accountToolbar.applyTopWindowInsets()
 
         //Observer for _loggedOut state
         vm.loggedOut.observe(viewLifecycleOwner) { isLoggedOut ->

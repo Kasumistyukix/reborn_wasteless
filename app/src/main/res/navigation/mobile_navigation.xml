@@ -65,7 +65,9 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/navigation_sign_in_selection"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Sign Up -->
@@ -78,7 +80,9 @@
             android:id="@+id/action_sign_up_to_login"
             app:destination="@id/navigation_login"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/navigation_sign_in_selection"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Forgot Password -->
@@ -93,7 +97,9 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/navigation_loading"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Home -->
@@ -147,8 +153,10 @@
         <action
             android:id="@+id/action_account_to_sign_in_selection"
             app:destination="@id/navigation_sign_in_selection"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/navigation_account"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <!-- Edit Profile -->
@@ -168,7 +176,8 @@
             android:id="@+id/action_logging_to_diary"
             app:destination="@id/navigation_diary"
             app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
+            app:exitAnim="@anim/slide_out_right"
+            />
     </fragment>
 
 
