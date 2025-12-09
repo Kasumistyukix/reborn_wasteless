@@ -27,6 +27,11 @@ class LoggingViewModel(
     val remarks = MutableLiveData<String>("")
     val imageUri = MutableLiveData<Uri?>(null)
 
+    //Variables to track existing state for editing logs
+    private var existingLogId: String? = null
+    private var existingImageUrl: String? = null
+    val existingImageToDisplay = MutableLiveData<String?>() // For loading img using Glide
+
     // Item selections kept per waste type so switching tabs does not lose input
     private val _selectionsByType = MutableLiveData<Map<WasteType, List<WasteItemSelection>>>(buildInitialSelections())
     private val _selections = MediatorLiveData<List<WasteItemSelection>>().apply {
@@ -65,7 +70,47 @@ class LoggingViewModel(
     private val _saveStatus = MutableLiveData<Result<Void>>()
     val saveStatus: LiveData<Result<Void>> = _saveStatus
 
-    /** Upload image, then write one Firestore doc per item with qty>0 */
+    /**
+     * Load an existing log (using recyclerview to get the id and then fetch data from firebase using that logId)
+     * Also distributes the quantities (e.g. "Cookie: 2") into the correct lists (Avoidable/Unavoidable)
+     * so they are ready when tabs are switched.
+     */
+    fun loadLog(logId: String) {
+        logRepository.getLog(logId).addOnSuccessListener { entity ->
+            if (entity != null) {
+                existingLogId = entity.id
+                existingImageUrl = entity.imageUrl
+
+                dateTime.value = entity.date
+                title.value = entity.title
+                wasteType.value = entity.wasteType
+                calcType.value = entity.calcType
+                remarks.value = entity.remarks ?: ""
+                existingImageToDisplay.value = entity.imageUrl
+
+                // Reconstruct selections
+                val initialMap = buildInitialSelections().toMutableMap()
+
+                // We need to iterate over the saved items and update the initialMap
+                entity.items.forEach { loggedItem ->
+                    val type = loggedItem.wasteType
+                    val list = initialMap[type]?.toMutableList() ?: return@forEach
+
+                    // Find index of the item with the same name
+                    val index = list.indexOfFirst { it.item.name == loggedItem.wasteItemId }
+                    if (index != -1) {
+                        list[index] = list[index].copy(quantity = loggedItem.quantity)
+                        initialMap[type] = list
+                    }
+                }
+                _selectionsByType.value = initialMap
+            }
+        }
+    }
+
+    /**
+     * Upload image, then write one Firestore doc per item with qty>0
+     */
     fun saveAll(context: Context) {
         val dt = dateTime.value ?: return
         val t = title.value.orEmpty()
@@ -94,9 +139,15 @@ class LoggingViewModel(
         val totalWt = itemsLog.sumOf { it.weight }
         val typesUsed = itemsLog.map { it.wasteType }.distinct()
 
+        /**
+         * Commit all changes made as a document under FoodLogEntity as a session
+         * pushes image to ImageStore, and other data to Firestore under users > log > document collection
+         */
         fun commit(imageUrl: String?) {
             val session = FoodLogEntity(
-                id = dt.toString(),
+                //How this works is that it first checks if there was already a log id affiliated, and uses it if there was
+                //If there wasn't just use the dt param as a new one
+                id = existingLogId ?: dt.toString(),
                 date = dt,
                 title = t,
                 wasteType = typesUsed.singleOrNull() ?: type,
@@ -113,11 +164,13 @@ class LoggingViewModel(
         }
 
         if (uri != null) {
+            //If there was a new image selected, change/upload it
             logRepository.uploadImage(uri)
                 .addOnSuccessListener { url -> commit(url) }
                 .addOnFailureListener { e -> _saveStatus.value = Result.failure(e) }
         } else {
-            commit(null)
+            //In the case that there was already an existing url, use that
+            commit(existingImageUrl)
         }
     }
 

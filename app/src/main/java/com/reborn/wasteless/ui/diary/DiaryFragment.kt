@@ -41,11 +41,18 @@ class DiaryFragment : Fragment() {
         binding.toolbarDiaryOptions.setOnClickListener {
             findNavController().navigate(DiaryFragmentDirections.actionDiaryToLogging())
         }
+
         /**
          * RecyclerView summary mapping
          */
         val recyclerDiary = binding.recyclerDiary
-        val adapter = FoodLogAdapter(mode = "DIARY")
+
+        //Pass the click listener (for safe args as well)
+        val adapter = FoodLogAdapter(mode = "DIARY") { summary ->
+            // Use SafeArgs to pass the ID
+            val action = DiaryFragmentDirections.actionDiaryToLogging(logId = summary.id)
+            findNavController().navigate(action)
+        }
         recyclerDiary.adapter = adapter
         recyclerDiary.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

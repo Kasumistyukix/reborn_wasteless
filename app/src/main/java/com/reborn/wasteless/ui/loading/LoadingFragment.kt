@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.reborn.wasteless.R
-import com.reborn.wasteless.databinding.FragmentLoadingBinding
 import com.reborn.wasteless.repo.AuthRepository
 
 class LoadingFragment : Fragment(R.layout.fragment_loading) {

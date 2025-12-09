@@ -12,8 +12,10 @@ import com.bumptech.glide.Glide
 import com.reborn.wasteless.R
 import com.reborn.wasteless.data.model.FoodLogSummary
 
-class FoodLogAdapter(private val mode: String = "HOME") :
-    RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>() {
+class FoodLogAdapter(
+    private val mode: String = "HOME",
+    private val onClick: (FoodLogSummary) -> Unit = {}
+) : RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>() {
     private val logs = mutableListOf<FoodLogSummary>()
 
     fun updateData(newLogs: List<FoodLogSummary>) {
@@ -38,6 +40,16 @@ class FoodLogAdapter(private val mode: String = "HOME") :
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         val tvWeight: TextView = itemView.findViewById(R.id.tvWeight)
         val tvWasteType: TextView = itemView.findViewById(R.id.tvWasteType)
+
+        //Click listener in the init block to get adapter position
+        init {
+            itemView.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onClick(logs[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodLogViewHolder {

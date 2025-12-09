@@ -72,6 +72,10 @@ class LogRepository {
         return docRef.set(toSave)
     }
 
+    /**
+     * Deletes a [com.reborn.wasteless.data.entity.FoodLogEntity] from Firestore.
+     * Returns the firestore entity to delete.
+     */
     fun deleteLog(logId: String): Task<Void> {
         val uid = auth.currentUser?.uid
             ?: return Tasks.forException(IllegalStateException("No signed-in user"))
@@ -82,6 +86,25 @@ class LogRepository {
             .collection("logs")
             .document(logId)
             .delete()
+    }
+
+    /**
+     * Gets a [com.reborn.wasteless.data.entity.FoodLogEntity] from Firestore.
+     * Returns a firestore log so it can be edited.
+     */
+    fun getLog(logId: String): Task<FoodLogEntity?> {
+        val uid = auth.currentUser?.uid
+            ?: return Tasks.forException(IllegalStateException("No signed-in user"))
+
+        return firestore
+            .collection("users")
+            .document(uid)
+            .collection("logs")
+            .document(logId)
+            .get()
+            .continueWith { task ->
+                task.result?.toObject(FoodLogEntity::class.java)
+            }
     }
 
     fun getAllSession(): LiveData<List<FoodLogEntity>> {
@@ -138,4 +161,5 @@ class LogRepository {
             entities.map { it.toSummary() }
         }
     }
+
 }
