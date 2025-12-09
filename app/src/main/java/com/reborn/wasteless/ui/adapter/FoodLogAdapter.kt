@@ -6,13 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.reborn.wasteless.R
 import com.reborn.wasteless.data.model.FoodLogSummary
 
-class FoodLogAdapter(private val logs: List<FoodLogSummary>, private val mode: String = "HOME") :
+class FoodLogAdapter(private val mode: String = "HOME") :
     RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>() {
+    private val logs = mutableListOf<FoodLogSummary>()
+
+    fun updateData(newLogs: List<FoodLogSummary>) {
+        val diff = DiffUtil.calculateDiff(LogsDiff(logs, newLogs))
+        logs.clear()
+        logs.addAll(newLogs)
+        diff.dispatchUpdatesTo(this)
+    }
+
+    fun getItem(position: Int): FoodLogSummary? = logs.getOrNull(position)
+
+    fun removeAt(position: Int): FoodLogSummary? {
+        if (position !in logs.indices) return null
+        val removed = logs.removeAt(position)
+        notifyItemRemoved(position)
+        return removed
+    }
+
     inner class FoodLogViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivPhoto: ImageView = itemView.findViewById(R.id.imgFood)
         val tvName: TextView = itemView.findViewById(R.id.tvFoodName)
@@ -60,4 +79,17 @@ class FoodLogAdapter(private val logs: List<FoodLogSummary>, private val mode: S
 
     private fun dpToPx(context: Context, dp: Int): Int =
         (dp * context.resources.displayMetrics.density).toInt()
+
+    private class LogsDiff(
+        private val old: List<FoodLogSummary>,
+        private val new: List<FoodLogSummary>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = old.size
+        override fun getNewListSize(): Int = new.size
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            old[oldItemPosition].id == new[newItemPosition].id
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            old[oldItemPosition] == new[newItemPosition]
+    }
 }

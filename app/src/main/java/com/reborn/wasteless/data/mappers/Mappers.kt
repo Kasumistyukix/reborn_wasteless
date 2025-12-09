@@ -9,6 +9,7 @@ import java.util.Locale
 // Map FoodLogEntity items into FoodLogSummary
 fun FoodLogEntity.toSummary(): FoodLogSummary =
     FoodLogSummary(
+        id = id,
         title = title,
         date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(date)),
         wasteType = when {

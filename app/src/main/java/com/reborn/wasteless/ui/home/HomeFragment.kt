@@ -49,11 +49,12 @@ class HomeFragment : Fragment() {
          * RecyclerView summary mapping
          */
         val recyclerDiary = binding.recyclerHomepageDiary
+        val adapter = FoodLogAdapter(mode = "HOME")
+        recyclerDiary.adapter = adapter
         recyclerDiary.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         vm.summary.observe(viewLifecycleOwner) { summaries ->
-            val adapter = FoodLogAdapter(summaries, mode = "HOME")
-            recyclerDiary.adapter = adapter
+            adapter.updateData(summaries)
         }
     }
 

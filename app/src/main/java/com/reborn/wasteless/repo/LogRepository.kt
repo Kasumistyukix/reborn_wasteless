@@ -72,6 +72,18 @@ class LogRepository {
         return docRef.set(toSave)
     }
 
+    fun deleteLog(logId: String): Task<Void> {
+        val uid = auth.currentUser?.uid
+            ?: return Tasks.forException(IllegalStateException("No signed-in user"))
+
+        return firestore
+            .collection("users")
+            .document(uid)
+            .collection("logs")
+            .document(logId)
+            .delete()
+    }
+
     fun getAllSession(): LiveData<List<FoodLogEntity>> {
         val uid = auth.currentUser?.uid
             ?: throw IllegalStateException("No signed-in user")

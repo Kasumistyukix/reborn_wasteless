@@ -26,6 +26,20 @@
             style="@style/Title20SBold_NoColor"
             />
 
+        <!-- Right button -->
+        <ImageButton
+            android:id="@+id/toolbar_diary_options"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_add_24px"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_confirm"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            app:tint="?attr/colorOnPrimary"
+            />
+
     </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,6 +49,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:padding="15dp"
+        android:paddingBottom="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/diary_toolbar"

@@ -112,6 +112,7 @@
     <string name="success_login">Login Success</string>
     <string name="success_account_created">Account created!</string>
     <string name="success_saved">Saved!</string>
+    <string name="success_delete">Log deleted!</string>
 
     <string name="error_username_empty">Username cannot be empty</string>
     <string name="error_username_short">Username must be at least 3 characters</string>
@@ -122,6 +123,7 @@
     <string name="error_password_empty">Password cannot be empty</string>
     <string name="error_password_length">Password must be between 8~64 characters</string>
     <string name="error_password_complexity">Password must contain at least 1 uppercase, lowercase, special character &amp; number</string>
+    <string name="error_delete">Failed to delete log.</string>
     <!-- firebase checks -->
     <string name="error_email_already_exists">An account with this email already exists.</string>
     <string name="error_password_weak">Password is too weak. Please use a stronger password.</string>
@@ -130,6 +132,7 @@
     <string name="error_registration">Registration failed. Please try again.</string>
     <string name="error_login">Login failed. Please try again.</string>
     <string name="error_generic_fail">An error occurred. Please try again.</string>
+
 
     <string name="cancel_imagepicker">Image picking cancelled.</string>
 </resources>

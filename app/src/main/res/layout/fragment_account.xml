@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/profile_picture"
         android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_image"
+        android:src="@drawable/take_a_photo"
         app:layout_constraintWidth_percent="0.4"
         app:layout_constraintHeight_percent="0.4"
         app:layout_constraintHorizontal_bias="0.1"

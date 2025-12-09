@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="@string/btn_take_photo"
-        android:src="@drawable/placeholder_image"
+        android:src="@drawable/take_a_photo"
         android:scaleType="centerCrop"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/logging_toolbar"
