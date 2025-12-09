@@ -3,8 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_sign_in_selection">
+    app:startDestination="@+id/navigation_loading">
 
+    <!-- Loading -->
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.reborn.wasteless.ui.loading.LoadingFragment"
+        android:label="@string/title_loading"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_loading_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_loading"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_loading_to_sign_in"
+            app:destination="@id/navigation_sign_in_selection"
+            app:popUpTo="@id/navigation_loading"
+            app:popUpToInclusive="true" />
+
+    </fragment>
     <!-- Sign In Selection -->
     <fragment
         android:id="@+id/navigation_sign_in_selection"
@@ -105,6 +124,11 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_diary_to_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <!-- Tamagotchi -->

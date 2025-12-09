@@ -35,14 +35,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         navController = navHostFragment.navController
 
-        //Check if there's a current user logged in AFTER navController is loaded
-        binding.root.post {
-            val isSignedIn = authRepository.isUserSignedIn()
-            val destination = if (isSignedIn) R.id.navigation_home else R.id.navigation_sign_in_selection
-            navController.navigate(destination)
-            Log.d("Auth", "User signed in: $isSignedIn, navigating to: $destination")
-        }
-
         val navView: BottomNavigationView = binding.navView
 
         navView.setupWithNavController(navController)
