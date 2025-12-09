@@ -24,12 +24,20 @@ import java.util.Calendar
 import androidx.navigation.NavOptions
 import com.reborn.wasteless.utils.applyTopWindowInsets
 import com.reborn.wasteless.utils.applyBottomWindowInsets
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 
 class LoggingFragment : Fragment() {
 
     private var _binding: FragmentLoggingBinding? = null
     private val binding get() = _binding!!
     private val vm: LoggingViewModel by viewModels()
+
+    /**
+     * While imagePickerLauncher already sets the image, but it doesn't rlly help when we are fetching the image data from firebase
+     * So we got to use Glide and SafeArgs to pass this imageUrl back into local, then set it when editing logs to load it
+     */
+    private val args: LoggingFragmentArgs by navArgs()
 
     //ActivityResult launcher
     private val imagePickerLauncher =
@@ -54,10 +62,6 @@ class LoggingFragment : Fragment() {
             }
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -74,6 +78,47 @@ class LoggingFragment : Fragment() {
 
         binding.recyclerItemWaste.applyBottomWindowInsets()
 
+        /**
+         * Checks for logId to load data
+         */
+        if (args.logId != null) {
+            vm.loadLog(args.logId!!)
+            // binding.buttonSaveLog.text = getString(R.string.update_log) [commented out but it was so to change the "Save" to "Update]
+        }
+
+        /**
+         * Observers for existing logs
+         */
+        vm.existingImageToDisplay.observe(viewLifecycleOwner) { url ->
+            if (!url.isNullOrBlank() && vm.imageUri.value == null) {
+                Glide.with(this)
+                    .load(url)
+                    .centerCrop()
+                    .into(binding.photoCaptureView)
+            }
+        }
+
+        //Input for title (needs to update when VM changes from load)
+        vm.title.observe(viewLifecycleOwner) {
+            if (binding.titleInput.text.toString() != it) {
+                binding.titleInput.setText(it)
+            }
+        }
+
+        //This is pretty important, it's for two-way syncing so that the watcher doesn't loop VM > View > VM > View..
+        vm.title.observe(viewLifecycleOwner) { loadedTitle ->
+            if (binding.titleInput.text.toString().isEmpty() && !loadedTitle.isNullOrEmpty()) {
+                binding.titleInput.setText(loadedTitle)
+            }
+        }
+
+        vm.calcType.observe(viewLifecycleOwner) { type ->
+            val id = if (type == CalcType.GRAMS) R.id.button_grams else R.id.button_portions
+            if (binding.calculationTypeRadio.checkedRadioButtonId != id) {
+                binding.calculationTypeRadio.check(id)
+            }
+        }
+
         // This single block handles the initial "Autofill" AND any future updates.
         vm.dateTime.observe(viewLifecycleOwner) { timestamp ->
             val cal = Calendar.getInstance()
@@ -82,9 +127,10 @@ class LoggingFragment : Fragment() {
             binding.dateTimeInput.text = formatCalendarToString(cal)
         }
 
-        //UI features from top to bottom (according to XML)
-        // gonna number them so they appear neater
-
+        /**
+         * UI features from top to bottom (according to XML)
+         * gonna number them so they appear neater
+         */
         //1. Cancel button
         binding.toolbarLoggingNo.setOnClickListener {
             findNavController().popBackStack()

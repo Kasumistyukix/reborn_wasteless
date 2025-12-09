@@ -5,14 +5,14 @@ package com.reborn.wasteless.data.model
  * Used by ViewModels to communicate auth results to Fragments.
  *
  * Example usage:
- * ```kotlin
+ *
  * when (val state = viewModel.loginState.value) {
  *     is AuthState.Success -> navigateToHome()
  *     is AuthState.Error -> showError(state.message)
  *     is AuthState.Loading -> showProgressBar()
- *     null -> // Initial state, do nothing
+ *     null -> // Initial state, so we do nothing lol
  * }
- * ```
+ *
  */
 sealed class AuthState {
     /**
